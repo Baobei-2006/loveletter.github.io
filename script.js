@@ -50,7 +50,7 @@ window.onload = function() {
         document.getElementById("loverName").innerHTML = lover;
 
         setTimeout(() => {
-            alert(`I hope you like this little surprise, ${lover}! I made it with all my heart. ❤️`);
+           alert(`I hope you like this little surprise, ${lover}! I made it with all my heart. ❤️`);
             showConfetti();
         }, 500);
 
@@ -58,9 +58,13 @@ window.onload = function() {
             document.getElementById("secrectMessage").classList.add("show");
         }, 1000);
 
-        const daysTogether = Math.floor(Math.random() * 1000) + 100;
-        animateCounter("memoryDays", daysTogether0);
-        
+        // CHANGE THIS DATE to your actual start date
+        const startDate = new Date('2026-04-01');
+        const today = new Date();
+        const diffTime = Math.abs(today - startDate);
+        const daysTogether = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+animateCounter("memoryDays", daysTogether);
     } else {
         alert("Please refresh the page and enter your name to see the surprise!");   
     }
@@ -77,7 +81,7 @@ function animateCounter(id, target) {
     const counter = setInterval(() => {
         current += increment;
         if (current >= target) {
-            clearInterval(timer);
+            clearInterval(counter); // Changed from 'timer' to 'counter'
             current = target;
         }
         element.innerHTML = Math.floor(current);
@@ -92,9 +96,9 @@ function showConfetti() {
 
 document.querySelectorAll(' .photo-placeholder').forEach(photo => {
     photo.addEventListener('click', function() {
-        this.innerHTML = <i class= "fas fa-heart" style="color: var(--primary-color); animation: pulse 0.5s ease-out"></i>;
+        this.innerHTML = `<i class= "fas fa-heart" style="color: var(--primary-color); animation: pulse 0.5s ease-out"></i>`;
         setTimeout(() => {
-            this.innerHTML = <i classs= "fas fa-heart"></i>
+            this.innerHTML = `<i classs= "fas fa-heart"></i>`
         }, 500);
     });
 });
